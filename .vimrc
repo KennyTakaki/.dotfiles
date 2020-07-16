@@ -28,10 +28,13 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " Plunins added by Takaki"
-Plugin 'w0rp/ale'
+" Plugin 'w0rp/ale' "
 Plugin 'scrooloose/nerdtree' 
 Plugin 'prabirshrestha/vim-lsp'
 Plugin 'mattn/vim-lsp-settings'
+
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -49,4 +52,12 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 set tabstop=2
 set expandtab
+
+" For Plugin 'scrooloose/nerdtree' "
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
+
+" Plugin 'prabirshrestha/vim-lsp' "
+"let g:ale_linters = {'c': ['clangd'], 'cpp': ['clangd'], 'python': ['flake8', 'pylint']}"
+"let b:ale_fixers = {'c': ['clang-format'], 'cpp': ['clang-format']}"
+"let g:ale_completion_enabled = 1"
