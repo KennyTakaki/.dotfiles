@@ -30,6 +30,8 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Plunins added by Takaki"
 Plugin 'w0rp/ale'
 Plugin 'scrooloose/nerdtree' 
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'mattn/vim-lsp-settings'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
