@@ -36,6 +36,9 @@ Plugin 'mattn/vim-lsp-settings'
 Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 
+" For Doxygen Comments "
+Plugin 'takio-c/doxygentoolkit.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -56,6 +59,10 @@ set expandtab
 " For Plugin 'scrooloose/nerdtree' "
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
+" For Plugin 'prabirshrestha/vim-lsp' "
+nnoremap <silent><C-f><C-f> :LspDocumentFormat<CR>
+nnoremap <silent><C-d><C-f> :LspDefinition<CR>
+nnoremap <silent><C-d><C-e> :LspDeclaration<CR>
 
 " Plugin 'prabirshrestha/vim-lsp' "
 "let g:ale_linters = {'c': ['clangd'], 'cpp': ['clangd'], 'python': ['flake8', 'pylint']}"
