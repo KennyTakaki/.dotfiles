@@ -74,7 +74,7 @@ nnoremap <silent><C-d><C-f> :LspDocumentFormat<CR>
 nnoremap <silent><C-d><C-d> :LspDefinition<CR>
 nnoremap <silent><C-d><C-e> :LspDeclaration<CR>
 nnoremap <silent><C-d><C-i> :LspImplementation<CR>
-
+nnoremap <silent><C-d><C-v> :LspDocumentDiagnostics<CR>
 " Plugin 'prabirshrestha/vim-lsp' "
 "let g:ale_linters = {'c': ['clangd'], 'cpp': ['clangd'], 'python': ['flake8', 'pylint']}"
 "let b:ale_fixers = {'c': ['clang-format'], 'cpp': ['clang-format']}"
