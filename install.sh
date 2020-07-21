@@ -16,4 +16,7 @@ do
 	ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
 
+# Directory for my original vim snippets 
+mkdir ~/.vim/snippets
+
 vim -c PluginInstall
