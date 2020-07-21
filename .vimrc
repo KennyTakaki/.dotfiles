@@ -70,8 +70,8 @@ set expandtab
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " For Plugin 'prabirshrestha/vim-lsp' "
-nnoremap <silent><C-f> :LspDocumentFormat<CR>
-nnoremap <silent><C-d><C-f> :LspDefinition<CR>
+nnoremap <silent><C-d><C-f> :LspDocumentFormat<CR>
+nnoremap <silent><C-d><C-d> :LspDefinition<CR>
 nnoremap <silent><C-d><C-e> :LspDeclaration<CR>
 nnoremap <silent><C-d><C-i> :LspImplementation<CR>
 
@@ -79,7 +79,6 @@ nnoremap <silent><C-d><C-i> :LspImplementation<CR>
 "let g:ale_linters = {'c': ['clangd'], 'cpp': ['clangd'], 'python': ['flake8', 'pylint']}"
 "let b:ale_fixers = {'c': ['clang-format'], 'cpp': ['clang-format']}"
 "let g:ale_completion_enabled = 1"
-
 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -101,5 +100,7 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
 "set snippet file dir
-let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippets/,~/.vim/snippets/'
