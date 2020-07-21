@@ -16,4 +16,4 @@ do
 	ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
 
-#vim -c PluginInstall
+vim -c PluginInstall
