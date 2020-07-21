@@ -60,9 +60,10 @@ set expandtab
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " For Plugin 'prabirshrestha/vim-lsp' "
-nnoremap <silent><C-f><C-f> :LspDocumentFormat<CR>
+nnoremap <silent><C-f> :LspDocumentFormat<CR>
 nnoremap <silent><C-d><C-f> :LspDefinition<CR>
 nnoremap <silent><C-d><C-e> :LspDeclaration<CR>
+nnoremap <silent><C-d><C-i> :LspImplementation<CR>
 
 " Plugin 'prabirshrestha/vim-lsp' "
 "let g:ale_linters = {'c': ['clangd'], 'cpp': ['clangd'], 'python': ['flake8', 'pylint']}"
