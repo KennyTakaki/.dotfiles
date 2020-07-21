@@ -39,6 +39,16 @@ Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 " For Doxygen Comments "
 Plugin 'takio-c/doxygentoolkit.vim'
 
+Plugin 'Shougo/deoplete.nvim'
+if !has('nvim')
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
+
+Plugin 'Shougo/neosnippet.vim'
+Plugin 'Shougo/neosnippet-snippets'
+
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
