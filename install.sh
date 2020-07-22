@@ -5,7 +5,13 @@ DOTPATH=~/.dotfiles
 type git
 
 if [ $? -eq 1 ]; then
-   sudo apt instal git
+   sudo apt install -y git
+fi
+
+type curl
+
+if [ $? -eq 1 ]; then
+   sudo apt install -y curl
 fi
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
