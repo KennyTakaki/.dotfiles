@@ -30,3 +30,8 @@ done
 mkdir ~/.vim/snippets
 
 vim -c PluginInstall
+
+# installer of lsp for cmake is not permitted to execute. So,change it.
+find ~/.vim/bundle -name "install*cmake*sh" | xargs -I{} chmod 775 {}
+
+
