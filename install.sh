@@ -41,12 +41,14 @@ done
 mkdir ~/.vim/snippets
 
 # needed for neovimsnippet
-sudo apt install python3-pip
+sudo apt install -y python3-pip
 pip3 install pynvim
 
 vim -c PluginInstall
 
 # installer of lsp for cmake is not permitted to execute. So,change it.
+# might not needed anymore
 find ~/.vim/bundle -name "install*cmake*sh" | xargs -I{} chmod 775 {}
 
-
+# make sure to install language server for each programming language
+# open a file of specific extension and type :LspInstallServer

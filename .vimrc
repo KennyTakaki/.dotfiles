@@ -93,6 +93,7 @@ nnoremap <silent><C-d><C-d> :LspDefinition<CR>
 nnoremap <silent><C-d><C-e> :LspDeclaration<CR>
 nnoremap <silent><C-d><C-i> :LspImplementation<CR>
 nnoremap <silent><C-d><C-v> :LspDocumentDiagnostics<CR>
+nnoremap <silent><C-d><C-I> :LspInstallServer<CR>
 let g:lsp_highlight_references_enabled = 1
 
 " For Plugin 'Shougo/neosnippet.vim'
