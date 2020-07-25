@@ -28,7 +28,6 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " Plunins added by Takaki"
-" Plugin 'w0rp/ale' "
 Plugin 'scrooloose/nerdtree' 
 Plugin 'prabirshrestha/vim-lsp'
 Plugin 'mattn/vim-lsp-settings'
@@ -39,14 +38,33 @@ Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 " For Doxygen Comments "
 Plugin 'takio-c/doxygentoolkit.vim'
 
-Plugin 'Shougo/deoplete.nvim'
-if !has('nvim')
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plugin 'Shougo/deoplete.nvim'
   Plugin 'roxma/nvim-yarp'
   Plugin 'roxma/vim-hug-neovim-rpc'
 endif
+let g:deoplete#enable_at_startup = 1
 
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
+
+" Plugin 'valloric/youcompleteme'
+
+" Track the engine.
+"Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+"Plugin 'honza/vim-snippets'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 
 " All of your Plugins must be added before the following line
@@ -75,11 +93,9 @@ nnoremap <silent><C-d><C-d> :LspDefinition<CR>
 nnoremap <silent><C-d><C-e> :LspDeclaration<CR>
 nnoremap <silent><C-d><C-i> :LspImplementation<CR>
 nnoremap <silent><C-d><C-v> :LspDocumentDiagnostics<CR>
-" Plugin 'prabirshrestha/vim-lsp' "
-"let g:ale_linters = {'c': ['clangd'], 'cpp': ['clangd'], 'python': ['flake8', 'pylint']}"
-"let b:ale_fixers = {'c': ['clang-format'], 'cpp': ['clang-format']}"
-"let g:ale_completion_enabled = 1"
+let g:lsp_highlight_references_enabled = 1
 
+" For Plugin 'Shougo/neosnippet.vim'
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -104,3 +120,7 @@ endif
 let g:neosnippet#enable_snipmate_compatibility = 1
 "set snippet file dir
 let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippets/,~/.vim/snippets/'
+
+"Open some source code for specific extension
+nnoremap <silent><C-n><C-s> :NeoSnippetEdit<CR>
+

@@ -29,6 +29,10 @@ done
 # Directory for my original vim snippets 
 mkdir ~/.vim/snippets
 
+# needed for neovimsnippet
+sudo apt install python3-pip
+pip3 install pyenvim
+
 vim -c PluginInstall
 
 # installer of lsp for cmake is not permitted to execute. So,change it.
