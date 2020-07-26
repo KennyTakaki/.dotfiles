@@ -25,6 +25,13 @@ sudo add-apt-repository -y ppa:jonathonf/vim
 sudo apt update -y
 sudo apt install -y vim
 
+type tmux
+
+if [ $? -eq 1 ]; then
+   sudo apt install -y tmux
+fi
+
+
 #these two line needed for python lsp
 sudo apt install -y python3-venv
 sudo apt install -y python3-dev build-essential libssl-dev libffi-dev
