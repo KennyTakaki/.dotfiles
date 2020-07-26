@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DOTPATH=~/.dotfiles
+SNIPPETS=/etc/snippets
 
 type git
 
@@ -16,9 +17,9 @@ fi
 
 type vim
 
-if [ $? -eq 1 ]; then
-   sudo apt remove -y vim
-fi
+#if [ $? -eq 1 ]; then
+#   sudo apt remove -y vim
+#fi
 
 # add repository for vim (8.2)
 sudo add-apt-repository -y ppa:jonathonf/vim
@@ -45,14 +46,22 @@ do
 	ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
 
-# Directory for my original vim snippets 
-mkdir ~/.vim/snippets
 
 # needed for neovimsnippet
 sudo apt install -y python3-pip
 pip3 install pynvim
 
 vim -c PluginInstall
+
+# Directory for my original vim snippets 
+DEPSNIPS=${HOME}/.vim/snippets
+mkdir ${DEPSNIPS}
+# make symbolic links for snippets of each extension
+for f in `find ${DOTPATH}${SNIPPETS} -name "*.snip"`
+do
+  fn=`basename ${f}`
+  ln -snfv "${f}" "${DEPSNIPS}/${fn}"
+done
 
 # installer of lsp for cmake is not permitted to execute. So,change it.
 # might not needed anymore
