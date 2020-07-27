@@ -125,3 +125,6 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippe
 "Open some source code for specific extension
 nnoremap <silent><C-n><C-s> :NeoSnippetEdit<CR>
 
+
+" util shortcuts 
+nnoremap <silent><C-u><C-p>  :echo expand("%:p")<CR>
