@@ -17,9 +17,12 @@ fi
 
 type vim
 
-#if [ $? -eq 1 ]; then
-#   sudo apt remove -y vim
-#fi
+if [ $? -eq 1 ]; then
+   sudo apt remove -y vim
+fi
+
+vimver=`vim --version | cut -c 19-21 | head -n 1`
+
 
 # add repository for vim (8.2)
 sudo add-apt-repository -y ppa:jonathonf/vim

@@ -46,6 +46,7 @@ else
   Plugin 'roxma/vim-hug-neovim-rpc'
 endif
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3.8'
 
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
