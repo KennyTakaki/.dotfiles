@@ -27,3 +27,154 @@ options     head
      
     };
 
+snippet     tk_class
+abbr        tkabbr
+options     head
+  /**
+  * @file      BaseClass.h
+  * @brief     クラスの説明
+  * @note      特記事項など
+  * @author    作者名
+  * @copyright 著作権、ライセンスの説明を記載
+  */
+  #ifndef ORGANIZATION_PROJECT_PACKAGE_LIB_CLASSNAME_H___
+  #define ORGANIZATION_PROJECT_PACKAGE_LIB_CLASSNAME_H___
+  // インクルードガードです
+  // 例えば以下のような構成でユニークな名称をつけることができます
+  // 実際のファイルパスも基準位置からこの構成と同じにすると整理しやすくなります
+  //
+  // (組織名)_(プロジェクト名)_(パッケージ名)_(ライブラリ名)_(クラス名)_H___
+  
+  //-------------------------------------------------------
+  // includes
+  //-------------------------------------------------------
+  // 依存関係のあるヘッダのインクルードはここに記述します
+  #include <iostream>
+  #include <mutex>
+  
+  //-------------------------------------------------------
+  // defines
+  //-------------------------------------------------------
+  // マクロ定義はここに記述します
+  
+  //-------------------------------------------------------
+  // namespace
+  //-------------------------------------------------------
+  // 名前空間の定義はここに記述します
+  
+  namespace organization
+  {
+  namespace project
+  {
+  namespace package
+  {
+  namespace lib
+  {
+  
+  //-------------------------------------------------------
+  // public classes
+  //-------------------------------------------------------
+  // 公開クラスの定義はここに記述します
+  
+  /**
+   * 基底クラスの最低限の定義
+   */
+  class BaseClass
+  {
+    public:
+      /**
+       * デフォルトコンストラクタ
+       */
+      BaseClass() {}
+  
+      /**
+       * 引数ありコンストラクタ
+       * @param value
+       */
+      explicit BaseClass(const std::string &value)
+          : privateMember_(value) {}
+  
+      /**
+       * コピーコンストラクタ
+       * コピーを抑止したい場合は = deleteと指定します
+       *
+       * @param from   コピー元インスタンス
+       */
+      BaseClass(const BaseClass &from)
+          : privateMember_(from.privateMember_) {}
+  
+      /**
+       * コピー代入演算子のオーバーロード
+       * 代入を抑止したい場合は = deleteと指定します
+       *
+       * @param from   代入元インスタンス
+       */
+      BaseClass &operator=(const BaseClass &from);
+  
+      /**
+       * ムーブコンストラクタ
+       * 必要に応じて宣言します
+       */
+      BaseClass(BaseClass &&rhs) noexcept = delete;
+  
+      /**
+       * ムーブ代入演算子
+       * 必要に応じて宣言します
+       */
+      BaseClass &operator=(BaseClass &&rhs) noexcept = delete;
+  
+      /**
+       * デストラクタ
+       * 基底クラスは必ずvirtualを付けます
+       */
+      virtual ~BaseClass() {}
+  
+      /**
+       * 公開関数
+       * 形式を極力統一するため、戻り値ではエラー情報を返し、
+       * 演算結果は引数に渡された出力用変数に代入するように定義します
+       *
+       * @param input  入力パラメータ
+       * @param output 出力を返す領域
+       * @retval エラー状態
+       */
+      Error publicMethod(const std::string &input, std::string &output) noexcept;
+  
+      /**
+       * getter系関数のように、実行しても
+       * メンバ変数の状態を変更しない関数はconstを付けます
+       * このような関数はスレッドセーフになるように設計します
+       */
+      virtual std::string toString() const;
+  
+      /**
+       * 純粋仮想関数
+       * Abstract Classとする場合にインターフェースとなる関数を定義します
+       */
+      // virtual void abstractMethod() = 0;
+  
+      //------------------------------------------
+      // クラス定数
+      //------------------------------------------
+      static constexpr uint32_t const CONST_INTEGER = 0; ///< コンパイル時定数とすることで配列の添え字に利用できます
+  
+      static constexpr char *const CONST_STRING = (char *const) "compile-time constants"; ///< 文字列リテラルも定義可能です
+  
+  
+    private:
+      /**
+       * private変数
+       */
+      std::string privateMember_;
+  
+      // const関数をスレッドセーフにするためのMutexオブジェクトを使う場合は
+      // const関数内で変更できるようにMutexオブジェクトに「mutable」を指定します
+      // mutable std::mutex mutexToString_;
+  };
+  
+  
+  } // namespace lib
+  } // namespace package
+  } // namespace project
+  } // namespace organaization
+  #endif // include guard

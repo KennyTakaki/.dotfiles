@@ -118,13 +118,14 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
+
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
 "set snippet file dir
 let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippets/,~/.vim/snippets/'
 
 "Open some source code for specific extension
-nnoremap <silent><C-n><C-s> :NeoSnippetEdit<CR>
+nnoremap <silent><C-n><C-s> :NeoSnippetEdit -split -vertical<CR>
 
 
 " util shortcuts 
