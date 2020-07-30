@@ -27,49 +27,37 @@ options     head
      
     };
 
-snippet     tk_class
+snippet     tk_class_h
 abbr        tkabbr
 options     head
   /**
-  * @file      BaseClass.h
+  * @file      ${1:`expand("%:r")`}.h
   * @brief     クラスの説明
   * @note      特記事項など
-  * @author    作者名
-  * @copyright 著作権、ライセンスの説明を記載
+  * @author    Kentarou Takaki @ SEI
+  * @copyright ~~~~~~~
   */
-  #ifndef ORGANIZATION_PROJECT_PACKAGE_LIB_CLASSNAME_H___
-  #define ORGANIZATION_PROJECT_PACKAGE_LIB_CLASSNAME_H___
-  // インクルードガードです
-  // 例えば以下のような構成でユニークな名称をつけることができます
-  // 実際のファイルパスも基準位置からこの構成と同じにすると整理しやすくなります
-  //
-  // (組織名)_(プロジェクト名)_(パッケージ名)_(ライブラリ名)_(クラス名)_H___
+  ${0}
+  // include guard should be the form of <PROJECT>_<PATH>_<FILE>_H_
+  #ifndef ${2:ORGANIZATION_PROJECT_PACKAGE_LIB_CLASSNAME_H___}
+  #define $2
   
   //-------------------------------------------------------
   // includes
   //-------------------------------------------------------
-  // 依存関係のあるヘッダのインクルードはここに記述します
-  #include <iostream>
-  #include <mutex>
-  
+  ${3:#include <iostream>}
   //-------------------------------------------------------
   // defines
   //-------------------------------------------------------
-  // マクロ定義はここに記述します
-  
+  //using new_type = oiginal_type
+
   //-------------------------------------------------------
   // namespace
   //-------------------------------------------------------
-  // 名前空間の定義はここに記述します
   
-  namespace organization
-  {
-  namespace project
-  {
-  namespace package
-  {
-  namespace lib
-  {
+  namespace ${4:organization} {
+  namespace ${5:project} {
+  namespace ${6:package} {
   
   //-------------------------------------------------------
   // public classes
@@ -79,19 +67,19 @@ options     head
   /**
    * 基底クラスの最低限の定義
    */
-  class BaseClass
+  class $1
   {
     public:
       /**
        * デフォルトコンストラクタ
        */
-      BaseClass() {}
+      $1() {}
   
       /**
        * 引数ありコンストラクタ
        * @param value
        */
-      explicit BaseClass(const std::string &value)
+      explicit $1(${7:const\ std::string\ &value})
           : privateMember_(value) {}
   
       /**
@@ -100,7 +88,7 @@ options     head
        *
        * @param from   コピー元インスタンス
        */
-      BaseClass(const BaseClass &from)
+      $1(const $1 &from)
           : privateMember_(from.privateMember_) {}
   
       /**
@@ -109,25 +97,25 @@ options     head
        *
        * @param from   代入元インスタンス
        */
-      BaseClass &operator=(const BaseClass &from);
+      $1 &operator=(const $1 &from);
   
       /**
        * ムーブコンストラクタ
        * 必要に応じて宣言します
        */
-      BaseClass(BaseClass &&rhs) noexcept = delete;
+      $1($1 &&rhs) noexcept = delete;
   
       /**
        * ムーブ代入演算子
        * 必要に応じて宣言します
        */
-      BaseClass &operator=(BaseClass &&rhs) noexcept = delete;
+      $1 &operator=($1 &&rhs) noexcept = delete;
   
       /**
        * デストラクタ
        * 基底クラスは必ずvirtualを付けます
        */
-      virtual ~BaseClass() {}
+      virtual ~$1() {}
   
       /**
        * 公開関数
@@ -156,9 +144,8 @@ options     head
       //------------------------------------------
       // クラス定数
       //------------------------------------------
-      static constexpr uint32_t const CONST_INTEGER = 0; ///< コンパイル時定数とすることで配列の添え字に利用できます
-  
-      static constexpr char *const CONST_STRING = (char *const) "compile-time constants"; ///< 文字列リテラルも定義可能です
+      //static constexpr uint32_t const CONST_INTEGER = 0; ///< コンパイル時定数とすることで配列の添え字に利用できます
+      //static constexpr char *const CONST_STRING = (char *const) "compile-time constants"; ///< 文字列リテラルも定義可能です
   
   
     private:
@@ -173,8 +160,7 @@ options     head
   };
   
   
-  } // namespace lib
-  } // namespace package
-  } // namespace project
-  } // namespace organaization
+  } // namespace $6
+  } // namespace $5
+  } // namespace $4
   #endif // include guard
