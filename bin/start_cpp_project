@@ -8,7 +8,10 @@ prj=$1
 
 mkdir "./"${1}
 
+touch ${1}"/compile_flags.txt"
+
 touch ${1}"/.gitignore"
+echo "build" > ${1}"/.gitignore"
 touch ${1}"/README.md"
 echo "This project was made by start_cpp_project" > ${1}/"README.md"
 touch ${1}"/LICENCE.md"
@@ -19,15 +22,20 @@ mkdir ${1}"/cmake"
 touch ${1}"/cmake/FindSomeLib.cmake"
 touch ${1}"/cmake/something_else.cmake"
 
+echo "specify lib name..."
+read libname
+echo "lib prefix is "${libname}
 mkdir -p ${1}"/include/"${1}
-touch ${1}"/include/"${1}"/lib.hpp"
+touch ${1}"/include/"${1}"/"${libname}".hpp"
 
 mkdir ${1}"/src"
-touch ${1}"/src/lib.cpp"
+touch ${1}"/src/"${libname}".cpp"
 
+echo "specify lib name..."
+read app_name
 mkdir ${1}"/apps"
 touch ${1}"/apps/CMakeLists.txt"
-touch ${1}"/apps/app_main.cpp"
+touch ${1}"/apps/"${app_name}".cpp"
 
 mkdir ${1}"/tests"
 touch ${1}"/tests/CMakeLists.txt"
