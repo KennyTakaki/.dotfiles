@@ -1,53 +1,54 @@
 #!/bin/bash
-if [ $1 = "" ]; then
-       echo "usage : start_cpp_project project_name"
-       exit
-fi
-
-prj=$1
-
-mkdir "./"${1}
-
-touch ${1}"/compile_flags.txt"
-
-touch ${1}"/.gitignore"
-echo "build" > ${1}"/.gitignore"
-touch ${1}"/README.md"
-echo "This project was made by start_cpp_project" > ${1}/"README.md"
-touch ${1}"/LICENCE.md"
-echo "Created By takaki" > ${1}"/LICENCE.md"
-touch ${1}"/CMakeLists.txt"
-
-mkdir ${1}"/cmake"
-touch ${1}"/cmake/FindSomeLib.cmake"
-touch ${1}"/cmake/something_else.cmake"
-
-echo "specify lib name..."
+echo "specify project name..."
+read prj
+echo "project name is "${prj}
+echo "specify first lib name..."
 read libname
-echo "lib prefix is "${libname}
-mkdir -p ${1}"/include/"${1}
-touch ${1}"/include/"${1}"/"${libname}".hpp"
+echo "first lib prefix is "${libname}
+echo "specify first app name..."
+read appname
+echo "first app prefix is "${appname}
 
-mkdir ${1}"/src"
-touch ${1}"/src/"${libname}".cpp"
+mkdir "./"${prj}
 
-echo "specify lib name..."
-read app_name
-mkdir ${1}"/apps"
-touch ${1}"/apps/CMakeLists.txt"
-touch ${1}"/apps/"${app_name}".cpp"
+touch ${prj}"/compile_flags.txt"
+echo  "-I./include" > ${prj}"/compile_flags.txt"
 
-mkdir ${1}"/tests"
-touch ${1}"/tests/CMakeLists.txt"
-touch ${1}"/tests/testlib.cpp"
+touch ${prj}"/.gitignore"
+echo "build" > ${prj}"/.gitignore"
+touch ${prj}"/README.md"
+echo "This project was made by start_cpp_project" > ${prj}/"README.md"
+touch ${prj}"/LICENCE.md"
+echo "Created By takaki" > ${prj}"/LICENCE.md"
+touch ${prj}"/CMakeLists.txt"
 
-mkdir ${1}"/docs"
-touch ${1}"/docs/CMakeLists.txt"
+mkdir ${prj}"/cmake"
+touch ${prj}"/cmake/CMakeLists.txt"
+touch ${prj}"/cmake/FindSomeLib.cmake"
+touch ${prj}"/cmake/something_else.cmake"
 
-mkdir -p ${1}"/extern/googletest"
+mkdir -p ${prj}"/include/"${prj}
+touch ${prj}"/include/"${prj}"/"${libname}".hpp"
 
-mkdir ${1}"/scripts"
-touch ${1}"/scripts/helper.py"
+mkdir ${prj}"/src"
+touch ${prj}"/src/"${libname}".cpp"
+touch ${prj}"/src/CMakeLists.txt
+
+mkdir ${prj}"/apps"
+touch ${prj}"/apps/CMakeLists.txt"
+touch ${prj}"/apps/"${appname}".cpp"
+
+mkdir ${prj}"/tests"
+touch ${prj}"/tests/CMakeLists.txt"
+touch ${prj}"/tests/testlib.cpp"
+
+mkdir ${prj}"/docs"
+touch ${prj}"/docs/CMakeLists.txt"
+
+mkdir -p ${prj}"/extern/googletest"
+
+mkdir ${prj}"/scripts"
+touch ${prj}"/scripts/helper.py"
 
 echo "==========created default project tree==========="
 tree
