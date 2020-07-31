@@ -31,7 +31,7 @@ snippet     tk_class_h
 abbr        tkabbr
 options     head
   /**
-  * @file      ${1:`expand("%:r")`}.h
+  * @file      ${1:`expand("%:r")`}.hpp
   * @brief     クラスの説明
   * @note      特記事項など
   * @author    Kentarou Takaki @ SEI
@@ -78,8 +78,8 @@ options     head
        * 引数ありコンストラクタ
        * @param value
        */
-      explicit $1(${7:const\ std::string\ &value})
-          : privateMember_(value) {}
+      explicit $1(const $7 & input_val)
+          : $8(input_val) {}
   
       /**
        * コピーコンストラクタ
@@ -151,7 +151,7 @@ options     head
       /**
        * private変数
        */
-      std::string privateMember_;
+      ${7:std::string} ${8:privateMember_};
   
       // const関数をスレッドセーフにするためのMutexオブジェクトを使う場合は
       // const関数内で変更できるようにMutexオブジェクトに「mutable」を指定します
@@ -178,7 +178,7 @@ options     head
   //-------------------------------------------------------
   // includes
   //-------------------------------------------------------
-  ${1:#include <include/$1.h>}
+
   //-------------------------------------------------------
   // defines
   //-------------------------------------------------------
