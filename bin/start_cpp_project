@@ -53,3 +53,7 @@ touch ${prj}"/scripts/helper.py"
 echo "==========created default project tree==========="
 tree
 echo "================================================="
+
+
+#To do
+#add some process for Doxygen
