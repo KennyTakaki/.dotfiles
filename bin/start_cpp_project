@@ -1,19 +1,21 @@
 #!/bin/bash
-echo "specify project name..."
+echo "==========specify project name...============="
 read prj
 echo "project name is "${prj}
-echo "specify first lib name..."
+echo "==========specify first lib name...==========="
 read libname
 echo "first lib prefix is "${libname}
-echo "specify first app name..."
+echo "==========specify first app name...==========="
 read appname
 echo "first app prefix is "${appname}
+
+incld='#include "'${prj}/${libname}'.hpp"'
 
 mkdir "./"${prj}
 
 mkdir "./"${prj}"/build"
-touch ${prj}"/build/"compile_commands.json
-ln -s ${prj}"/build/compile_commands.json" ${prj}"/build/compile_commands.json"
+touch ${prj}"/build/compile_commands.json"
+ln -s "./build/compile_commands.json" ${prj}"/compile_commands.json"
 
 touch ${prj}"/compile_flags.txt"
 echo  "-I./include" > ${prj}"/compile_flags.txt"
@@ -36,11 +38,13 @@ touch ${prj}"/include/"${prj}"/"${libname}".hpp"
 
 mkdir ${prj}"/src"
 touch ${prj}"/src/"${libname}".cpp"
+echo  ${incld} > ${prj}"/src/"${libname}".cpp"
 touch ${prj}"/src/CMakeLists.txt"
 
 mkdir ${prj}"/apps"
 touch ${prj}"/apps/CMakeLists.txt"
 touch ${prj}"/apps/"${appname}".cpp"
+echo  ${incld} > ${prj}"/apps/"${appname}".cpp"
 
 mkdir ${prj}"/tests"
 touch ${prj}"/tests/CMakeLists.txt"
@@ -48,6 +52,7 @@ touch ${prj}"/tests/testlib.cpp"
 
 mkdir ${prj}"/docs"
 touch ${prj}"/docs/CMakeLists.txt"
+cd ${prj}/docs && doxygen -g && mkdir out && cd ../../
 
 mkdir -p ${prj}"/extern/googletest"
 
@@ -55,7 +60,7 @@ mkdir ${prj}"/scripts"
 touch ${prj}"/scripts/helper.py"
 
 echo "==========created default project tree==========="
-tree
+tree ${prj}
 echo "================================================="
 
 # To Do
