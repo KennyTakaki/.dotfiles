@@ -90,10 +90,18 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " For Plugin 'prabirshrestha/vim-lsp' "
 nnoremap <silent><C-d><C-f> :LspDocumentFormat<CR>
-nnoremap <silent><C-d><C-d> :LspDefinition<CR>
-nnoremap <silent><C-d><C-e> :LspDeclaration<CR>
+nnoremap <silent><C-d><C-d> :LspPeekDefinition<CR>
+nnoremap <silent><C-d><C-e> :LspPeekDeclaration<CR>
+nnoremap <silent><C-d><C-s> :LspDefinition<CR>
+nnoremap <silent><C-d><C-a> :LspDeclaration<CR>
+nnoremap <silent><C-d><C-r> :LspReferences<CR>
+nnoremap <silent><C-d><C-n> :LspRename<CR>
 nnoremap <silent><C-d><C-i> :LspImplementation<CR>
+nnoremap <silent><C-d><C-h> :LspHover<CR>
+nnoremap <silent><C-d><C-t> :LspTypeDefinition<CR>
+nnoremap <silent><C-d><C-q> :LspTypeHierarchy<CR>
 nnoremap <silent><C-d><C-v> :LspDocumentDiagnostics<CR>
+nnoremap <silent><C-d><C-p> :LspPeekDeclaration<CR>
 nnoremap <silent><C-d><C-I> :LspInstallServer<CR>
 let g:lsp_highlight_references_enabled = 1
 

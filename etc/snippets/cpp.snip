@@ -37,7 +37,6 @@ options     head
   * @author    Kentarou Takaki @ SEI
   * @copyright ~~~~~~~
   */
-  ${0}
   // include guard should be the form of <PROJECT>_<PATH>_<FILE>_H_
   #ifndef ${2:ORGANIZATION_PROJECT_PACKAGE_LIB_CLASSNAME_H___}
   #define $2
@@ -55,7 +54,7 @@ options     head
   // namespace
   //-------------------------------------------------------
   
-  namespace ${4:organization} {
+  namespace ${4:sei} {
   namespace ${5:project} {
   namespace ${6:package} {
   
@@ -164,6 +163,51 @@ options     head
   } // namespace $5
   } // namespace $4
   #endif // include guard
+
+snippet     tk_class_cpp
+abbr        tkabbr_class
+options     head
+  /**
+  * @file      ${1:`expand("%:r")`}.cpp
+  * @brief     クラスの説明
+  * @note      特記事項など
+  * @author    Kentarou Takaki @ SEI
+  * @copyright ~~~~~~~
+  */
+  ${0}
+  //-------------------------------------------------------
+  // includes
+  //-------------------------------------------------------
+  ${1:#include <include/$1.h>}
+  //-------------------------------------------------------
+  // defines
+  //-------------------------------------------------------
+  //using new_type = oiginal_type
+
+  //-------------------------------------------------------
+  // namespace
+  //-------------------------------------------------------
+  
+  namespace ${4:sei} {
+  namespace ${5:project} {
+  namespace ${6:package} {
+  
+  // constructor
+  $1::$1()
+  {}
+
+  // constructor with initializer
+  $1::$1(type input,type2 input2)
+      : m_input{imput}
+        , m_input{input2}
+  {}
+
+  $1::anyother_method()
+  {}
+
+  } // namespace $6
+  } // namespace $5
+  } // namespace $4
 
 
 snippet     dx_comment
