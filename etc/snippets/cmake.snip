@@ -33,6 +33,6 @@ options     head
   add_subdirectory(docs)
   add_subdirectory(src)
   
-  add_executable(${PROJECT_NAME} apps/$1.cpp)
-  
-  target_link_libraries(${PROJECT_NAME} ${2:your_project_lib}.cpp)
+  add_executable(${PROJECT_NAME} apps/${2:main}.cpp)
+  ${5:#}add_library(${3:libname} src/${4:lib}.cpp)
+  $5target_link_libraries(${PROJECT_NAME} $3)
