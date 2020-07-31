@@ -23,6 +23,12 @@ fi
 
 vimver=`vim --version | cut -c 19-21 | head -n 1`
 
+# To do
+# Contition for Vim version
+# Doxygen install
+# Graph Viz install
+# Tree Install
+# Split this files into several section
 
 # add repository for vim (8.2)
 sudo add-apt-repository -y ppa:jonathonf/vim

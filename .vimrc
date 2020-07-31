@@ -130,3 +130,7 @@ nnoremap <silent><C-n><C-s> :NeoSnippetEdit -split -vertical<CR>
 
 " util shortcuts 
 nnoremap <silent><C-u><C-p>  :echo expand("%:p")<CR>
+
+" To do
+" add plugin for git
+" change settings for vim-lsp.(split window for definition jump)
