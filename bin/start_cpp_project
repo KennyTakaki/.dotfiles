@@ -32,7 +32,7 @@ touch ${prj}"/include/"${prj}"/"${libname}".hpp"
 
 mkdir ${prj}"/src"
 touch ${prj}"/src/"${libname}".cpp"
-touch ${prj}"/src/CMakeLists.txt
+touch ${prj}"/src/CMakeLists.txt"
 
 mkdir ${prj}"/apps"
 touch ${prj}"/apps/CMakeLists.txt"
@@ -54,6 +54,5 @@ echo "==========created default project tree==========="
 tree
 echo "================================================="
 
-
-#To do
-#add some process for Doxygen
+# To Do
+# write some doxygen staff
