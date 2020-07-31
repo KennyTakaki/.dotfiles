@@ -134,6 +134,7 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippe
 
 "Open some source code for specific extension
 nnoremap <silent><C-n><C-s> :NeoSnippetEdit -split -vertical<CR>
+nnoremap <silent><C-n><C-d> :NeoSnippetSource ~/.vim/snippets/doxygen.snip<CR>
 
 
 " util shortcuts 
