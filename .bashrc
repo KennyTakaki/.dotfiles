@@ -120,6 +120,6 @@ export PATH=$PATH:~/.dotfiles/bin/
 
 # 初回シェル時のみ tmux実行
 if [ $SHLVL = 1 ]; then
-  tmux new -s tk_tmux
+  tmux -2 new -s tk_tmux
 fi
 
