@@ -30,6 +30,33 @@ vimver=`vim --version | cut -c 19-21 | head -n 1`
 # Tree Install
 # Split this files into several section
 
+type doxygen
+
+if [ $? -eq 1 ]; then
+   sudo apt install doxygen graphviz doxygen-gui
+fi
+
+type tree
+
+if [ $? -eq 1 ]; then
+   sudo apt install tree
+fi
+
+type cmake
+
+if [ $? -eq 1 ]; then
+   sudo apt install cmake
+fi
+
+
+# needed for some programming of vim-lsp-settings
+# it is some kind of package manager
+type npm
+
+if [ $? -eq 1 ]; then
+   sudo apt install npm
+fi
+
 # add repository for vim (8.2)
 sudo add-apt-repository -y ppa:jonathonf/vim
 sudo apt update -y

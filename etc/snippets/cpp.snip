@@ -37,7 +37,7 @@ options     head
   * @file      ${1:`expand("%:r")`}.hpp
   * @brief     クラスの説明
   * @note      特記事項など
-  * @author    Kentarou Takaki @ SEI
+  * @author    Kentarou Takaki
   * @copyright ~~~~~~~
   */
   // include guard should be the form of <PROJECT>_<PATH>_<FILE>_H_
@@ -64,101 +64,63 @@ options     head
   //-------------------------------------------------------
   // public classes
   //-------------------------------------------------------
-  // 公開クラスの定義はここに記述します
   
   /**
-   * 基底クラスの最低限の定義
+   * Doxygen: クラス概要
    */
   class $1
   {
     public:
       /**
-       * デフォルトコンストラクタ
+       * @brief This is Default Constructor
        */
-      $1() {}
+      $1();
+      
+      /**
+       * @brief This is Constructor with param
+       * @param input_value
+       */
+      explicit $1(const $7 & input_val);
   
       /**
-       * 引数ありコンストラクタ
-       * @param value
+       * @brief This is Copy Constructor
+       * @param from Instance to copy from
        */
-      explicit $1(const $7 & input_val)
-          : $8(input_val) {}
-  
+      $1(const $1 &from);
+
       /**
-       * コピーコンストラクタ
-       * コピーを抑止したい場合は = deleteと指定します
-       *
-       * @param from   コピー元インスタンス
-       */
-      $1(const $1 &from)
-          : privateMember_(from.privateMember_) {}
-  
-      /**
-       * コピー代入演算子のオーバーロード
-       * 代入を抑止したい場合は = deleteと指定します
-       *
-       * @param from   代入元インスタンス
+       * @brief Over Load of operator for Copy Assignment 
+       * @param from Instance for copy from
        */
       $1 &operator=(const $1 &from);
-  
+
       /**
-       * ムーブコンストラクタ
-       * 必要に応じて宣言します
+       * @brief Move Constructor : The default setting is delete
        */
       $1($1 &&rhs) noexcept = delete;
-  
+
       /**
-       * ムーブ代入演算子
-       * 必要に応じて宣言します
+       * @brief Over Load of operator for Move Assignment
+       *        The default setting is delete
        */
       $1 &operator=($1 &&rhs) noexcept = delete;
-  
+
       /**
-       * デストラクタ
-       * 基底クラスは必ずvirtualを付けます
+       * @brief Destructor
        */
-      virtual ~$1() {}
+      ~$1() = default;
   
-      /**
-       * 公開関数
-       * 形式を極力統一するため、戻り値ではエラー情報を返し、
-       * 演算結果は引数に渡された出力用変数に代入するように定義します
-       *
-       * @param input  入力パラメータ
-       * @param output 出力を返す領域
-       * @retval エラー状態
-       */
-      Error publicMethod(const std::string &input, std::string &output) noexcept;
-  
-      /**
-       * getter系関数のように、実行しても
-       * メンバ変数の状態を変更しない関数はconstを付けます
-       * このような関数はスレッドセーフになるように設計します
-       */
-      virtual std::string toString() const;
-  
-      /**
-       * 純粋仮想関数
-       * Abstract Classとする場合にインターフェースとなる関数を定義します
-       */
-      // virtual void abstractMethod() = 0;
-  
-      //------------------------------------------
-      // クラス定数
-      //------------------------------------------
-      //static constexpr uint32_t const CONST_INTEGER = 0; ///< コンパイル時定数とすることで配列の添え字に利用できます
-      //static constexpr char *const CONST_STRING = (char *const) "compile-time constants"; ///< 文字列リテラルも定義可能です
-  
-  
+
+      /*public methods*/
+
+      std::string GetprivateMember();
+
     private:
       /**
-       * private変数
+       * private member
        */
       ${7:std::string} ${8:privateMember_};
   
-      // const関数をスレッドセーフにするためのMutexオブジェクトを使う場合は
-      // const関数内で変更できるようにMutexオブジェクトに「mutable」を指定します
-      // mutable std::mutex mutexToString_;
   };
   
   
@@ -181,7 +143,7 @@ options     head
   //-------------------------------------------------------
   // includes
   //-------------------------------------------------------
-
+  #include <string>
   //-------------------------------------------------------
   // defines
   //-------------------------------------------------------
@@ -195,18 +157,17 @@ options     head
   namespace ${5:project} {
   namespace ${6:package} {
   
-  // constructor
+  // Default Constructor
   $1::$1()
   {}
 
-  // constructor with initializer
-  $1::$1(type input,type2 input2)
-      : m_input{imput}
-        , m_input{input2}
+  // Constructor with initializer
+  $1::$1(consnt std::string & input)
+      : privateMember_{input}
   {}
 
-  $1::anyother_method()
-  {}
+  std::string $1::GetprivateMemberk()
+  {return privateMember_;}
 
   } // namespace $6
   } // namespace $5
