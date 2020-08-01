@@ -52,6 +52,7 @@ touch ${prj}"/tests/testlib.cpp"
 
 mkdir ${prj}"/docs"
 touch ${prj}"/docs/CMakeLists.txt"
+touch ${prj}"/docs/mainpage.txt"
 cd ${prj}/docs && doxygen -g && mkdir out && cd ../../
 
 mkdir -p ${prj}"/extern/googletest"
