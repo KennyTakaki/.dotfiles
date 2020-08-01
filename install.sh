@@ -105,3 +105,5 @@ find ~/.vim/bundle -name "install*cmake*sh" | xargs -I{} chmod 775 {}
 
 # make sure to install language server for each programming language
 # open a file of specific extension and type :LspInstallServer
+# Following is my Server List
+# C++, Python, HTML, bash, json
