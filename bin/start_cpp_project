@@ -22,6 +22,8 @@ echo  "-I./include" > ${prj}"/compile_flags.txt"
 
 touch ${prj}"/.gitignore"
 echo "build" > ${prj}"/.gitignore"
+echo "docs/out" > ${prj}"/.gitignore"
+echo "docs/latex" > ${prj}"/.gitignore"
 touch ${prj}"/README.md"
 echo "This project was made by start_cpp_project" > ${prj}/"README.md"
 touch ${prj}"/LICENCE.md"
