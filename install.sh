@@ -9,7 +9,6 @@ fi
 
 for install_package in "${packages[@]}" ; do
         echo ${install_package}
-        type ${install_package}
         # add repository for vim (8.2)
         if [ ${install_package} = "vim" ]; then
             # if already has vim, it's probably less than version 8.2.
@@ -25,6 +24,7 @@ for install_package in "${packages[@]}" ; do
             continue
         fi
        
+        type ${install_package}
         if [ $? -eq 1 ]; then
             sudo apt install -y ${install_package}
         fi
