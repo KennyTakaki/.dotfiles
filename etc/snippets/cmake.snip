@@ -16,7 +16,7 @@ options     head
   # compile_commands.json for clangd
   set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
   
-  PROJECT(${1:prjname} C CXX )
+  PROJECT(${1:prj_and_app_name} C CXX )
   # If you need Boost Lib, get rid of #
   #find_package(Boost REQUIRED)
   # If you need Thred Lib, get rid of #
@@ -33,6 +33,17 @@ options     head
   add_subdirectory(docs)
   add_subdirectory(src)
   
-  add_executable(${PROJECT_NAME} apps/${2:main}.cpp)
-  ${5:#}add_library(${3:libname} src/${4:lib}.cpp)
-  $5target_link_libraries(${PROJECT_NAME} $3)
+  
+  file(GLOB MY_APP_SRC
+       "apps/*.cpp"
+       )
+
+  add_executable(${PROJECT_NAME} ${MY_APP_SRC})
+
+
+  file(GLOB MY_LIB_SRC
+       "src/*.cpp"
+       )
+
+  ${3:#}add_library(${2:libname} ${MY_LIB_SRC})
+  $3target_link_libraries(${PROJECT_NAME} $3)

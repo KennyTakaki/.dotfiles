@@ -3,76 +3,33 @@
 DOTPATH=~/.dotfiles
 SNIPPETS=/etc/snippets
 
-type git
-
-if [ $? -eq 1 ]; then
-   sudo apt install -y git
+if [ -f ./install_list ]; then
+   . ./install_list
 fi
 
-type curl
-
-if [ $? -eq 1 ]; then
-   sudo apt install -y curl
-fi
-
-type vim
-
-if [ $? -eq 1 ]; then
-   sudo apt remove -y vim
-fi
-
-vimver=`vim --version | cut -c 19-21 | head -n 1`
-
-# To do
-# Contition for Vim version
-# Doxygen install
-# Graph Viz install
-# Tree Install
-# Split this files into several section
-
-type doxygen
-
-if [ $? -eq 1 ]; then
-   sudo apt install doxygen graphviz doxygen-gui
-fi
-
-type tree
-
-if [ $? -eq 1 ]; then
-   sudo apt install tree
-fi
-
-type cmake
-
-if [ $? -eq 1 ]; then
-   sudo apt install cmake
-fi
-
-
-# needed for some programming of vim-lsp-settings
-# it is some kind of package manager
-type npm
-
-if [ $? -eq 1 ]; then
-   sudo apt install npm
-fi
-
-# add repository for vim (8.2)
-sudo add-apt-repository -y ppa:jonathonf/vim
-sudo apt update -y
-sudo apt install -y vim
-
-type tmux
-
-if [ $? -eq 1 ]; then
-   sudo apt install -y tmux
-fi
-
-
-#these two line needed for python lsp
-sudo apt install -y python3-venv
-sudo apt install -y python3-dev build-essential libssl-dev libffi-dev
-
+for install_package in "${packages[@]}" ; do
+        echo ${install_package}
+        type ${install_package}
+        # add repository for vim (8.2)
+        if [ ${install_package} = "vim" ]; then
+            # if already has vim, it's probably less than version 8.2.
+            # To install newer version, get rid of vim.
+            # vimver=`vim --version | cut -c 19-21 | head -n 1`
+            if [ $? -eq 1]; then
+              sudo apt remove -y vim
+            fi
+            # add repository for vim 8.2
+            sudo add-apt-repository -y ppa:jonathonf/vim
+            sudo apt update -y
+            sudo apt install -y vim
+            continue
+        fi
+       
+        if [ $? -eq 1 ]; then
+            sudo apt install -y ${install_package}
+        fi
+done
+exit
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 for f in .??*
@@ -82,11 +39,10 @@ do
 	ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
 
-
 # needed for neovimsnippet
-sudo apt install -y python3-pip
 pip3 install pynvim
 
+# Plugin install for vim
 vim -c PluginInstall
 
 # Directory for my original vim snippets 
@@ -106,4 +62,4 @@ find ~/.vim/bundle -name "install*cmake*sh" | xargs -I{} chmod 775 {}
 # make sure to install language server for each programming language
 # open a file of specific extension and type :LspInstallServer
 # Following is my Server List
-# C++, Python, HTML, bash, json
+# C++, Python, HTML, bash, json, sql, CMakeLists.txt
