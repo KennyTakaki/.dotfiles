@@ -8,7 +8,6 @@ if [ -f ./install_list ]; then
 fi
 
 for install_package in "${packages[@]}" ; do
-        echo ${install_package}
         # add repository for vim (8.2)
         if [ ${install_package} = "vim" ]; then
             # if already has vim, it's probably less than version 8.2.
@@ -29,7 +28,7 @@ for install_package in "${packages[@]}" ; do
             sudo apt install -y ${install_package}
         fi
 done
-exit
+
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 for f in .??*
