@@ -59,6 +59,10 @@ done
 # might not needed anymore
 find ~/.vim/bundle -name "install*cmake*sh" | xargs -I{} chmod 775 {}
 
+# needed for sql server and so on ...
+# I don't know the reason why
+sudo npm i -g npm@latest
+
 # make sure to install language server for each programming language
 # open a file of specific extension and type :LspInstallServer
 # Following is my Server List
