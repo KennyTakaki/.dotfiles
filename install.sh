@@ -34,6 +34,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 for f in .??*
 do
 	[ "$f" = ".git" ] && continue
+	[ "$f" = ".gitignore" ] && continue
   [ "$f" = ".bashrc" ] && [ -e $HOME"/.bashrc" ] && continue 
 	ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
