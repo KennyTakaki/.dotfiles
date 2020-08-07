@@ -15,7 +15,7 @@ for install_package in "${packages[@]}" ; do
             # if already has vim, it's probably less than version 8.2.
             # To install newer version, get rid of vim.
             # vimver=`vim --version | cut -c 19-21 | head -n 1`
-            if [ $? -eq 1]; then
+            if [ $? -eq 1 ]; then
               sudo apt remove -y vim
             fi
             # add repository for vim 8.2
