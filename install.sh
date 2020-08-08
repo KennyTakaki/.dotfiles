@@ -63,15 +63,6 @@ find ~/.vim/bundle -name "install*cmake*sh" | xargs -I{} chmod 775 {}
 # I don't know the reason why
 sudo npm i -g npm@latest
 
-# Install boost lib
-sudo apt install libboost-dev
-
-# asciidoc might be needed for vsomeip build
-# sudo apt install asciidoc
-
-# also gtest an gmock might needed for vsomeip build
-# sudo apt install libsystemd-dev ?
-
 # make sure to install language server for each programming language
 # open a file of specific extension and type :LspInstallServer
 # Following is my Server List
