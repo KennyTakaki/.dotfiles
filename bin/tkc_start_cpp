@@ -1,15 +1,8 @@
 #!/bin/bash
-echo "==========specify project name...============="
+echo "=========Input your application or lib name =========="
 read prj
-echo "project name is "${prj}
-echo "==========specify first lib name...==========="
-read libname
-echo "first lib prefix is "${libname}
-echo "==========specify first app name...==========="
-read appname
-echo "first app prefix is "${appname}
 
-incld='#include "'${prj}/${libname}'.hpp"'
+echo "create initial setting for ${prj}"
 
 mkdir "./"${prj}
 
@@ -25,7 +18,7 @@ echo "build" > ${prj}"/.gitignore"
 echo "docs/out" > ${prj}"/.gitignore"
 echo "docs/latex" > ${prj}"/.gitignore"
 touch ${prj}"/README.md"
-echo "This project was made by start_cpp_project" > ${prj}/"README.md"
+echo "This project was made by start_cpp_app" > ${prj}/"README.md"
 touch ${prj}"/LICENCE.md"
 echo "Created By takaki" > ${prj}"/LICENCE.md"
 touch ${prj}"/CMakeLists.txt"
@@ -36,24 +29,19 @@ touch ${prj}"/cmake/FindSomeLib.cmake"
 touch ${prj}"/cmake/something_else.cmake"
 
 mkdir -p ${prj}"/include/"${prj}
-touch ${prj}"/include/"${prj}"/"${libname}".hpp"
+touch ${prj}"/include/"${prj}"/"${prj}".hpp"
+
+incld='#include "'${prj}/${prj}'.hpp"'
 
 mkdir ${prj}"/src"
-touch ${prj}"/src/"${libname}".cpp"
-echo  ${incld} > ${prj}"/src/"${libname}".cpp"
-touch ${prj}"/src/CMakeLists.txt"
-
-mkdir ${prj}"/apps"
-touch ${prj}"/apps/CMakeLists.txt"
-touch ${prj}"/apps/"${appname}".cpp"
-echo  ${incld} > ${prj}"/apps/"${appname}".cpp"
+touch ${prj}"/src/"${prj}".cpp"
+echo  ${incld} > ${prj}"/src/"${prj}".cpp"
 
 mkdir ${prj}"/tests"
 touch ${prj}"/tests/CMakeLists.txt"
 touch ${prj}"/tests/testlib.cpp"
 
 mkdir ${prj}"/docs"
-touch ${prj}"/docs/CMakeLists.txt"
 touch ${prj}"/docs/mainpage.txt"
 cd ${prj}/docs && doxygen -g && mkdir out && cd ../../
 
