@@ -30,6 +30,7 @@ touch ${prj}"/cmake/something_else.cmake"
 
 mkdir -p ${prj}"/include/"${prj}
 touch ${prj}"/include/"${prj}"/"${prj}".hpp"
+echo  "#include <iostream>" > "${prj}"/include/"${prj}"/"${prj}.hpp"
 
 incld='#include "'${prj}/${prj}'.hpp"'
 
