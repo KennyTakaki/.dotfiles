@@ -17,3 +17,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# search for file
+alias search='find -type f | xargs grep --color=auto'
+alias search_cpp='find -type f -name "*.cpp"| xargs grep --color=auto'
+alias search_hpp='find -type f -name "*.hpp"| xargs grep --color=auto'
