@@ -9,7 +9,12 @@ options     head
   
   # set some compile options
   set(CMAKE_CXX_FLAGS -pthread -Wall -D_GLIBCXX_USE_NANOSLEEP -DLINUX)
-  
+
+  # for debug option and include something elese
+  #set(CMAKE_CXX_FLAGS "-Wall -I/usr/include/postgresql -g -O0")
+  # for release option
+  #set(CMAKE_CXX_FLAGS "-Wall -O2")
+
   set(CMAKE_VERBOSE_MAKEFILE on)
   # This variable CMAKE_EXPORT_COMPILE_COMMANDS is
   # needed to be set to 1. It is configured for outputting
