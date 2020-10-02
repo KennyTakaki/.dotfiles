@@ -1,5 +1,5 @@
-snippet     inicmake
-abbr        inicmake
+snippet     tk_cmake_app
+abbr        tk_cmake_app
 options     head
   # Works with 3.5 and tested through
   cmake_minimum_required(VERSION 3.5)
@@ -8,6 +8,7 @@ options     head
   set(CMAKE_CXX_STANDARD 14)
   
   # set some compile options
+  # todo : It should be target_compile_options
   set(CMAKE_CXX_FLAGS -pthread -Wall -D_GLIBCXX_USE_NANOSLEEP -DLINUX)
 
   # for debug option and include something elese
@@ -19,36 +20,75 @@ options     head
   # This variable CMAKE_EXPORT_COMPILE_COMMANDS is
   # needed to be set to 1. It is configured for outputting
   # compile_commands.json for clangd
+
   set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
   
-  PROJECT(${1:prj_and_app_name} C CXX )
+  PROJECT(${1:prj_name} C CXX )
+
+  # if you need boost,use tk_cmake_boost 
+  
+  include(GNUInstallDirs)
+  
+  #If this app needs library, user next line
+  #add_subdirectory(lib)
+  
+  add_executable(${PROJECT_NAME}
+          ${CMAKE_CURRENT_SOURCE_DIR}/src/$1.cpp
+  )
+
+  target_include_directories(
+          ${PROJECT_NAME}
+          PRIVATE
+          ${CMAKE_CURRENT_SOURCE_DIR}/include
+  )
+
+  #target_link_libraries(${PROJECT_NAME} lib1 lib2 ...)
+
+snippet     tk_cmake_lib
+abbr        tk_cmake_lib
+options     head
+  # Works with 3.5 and tested through
+  cmake_minimum_required(VERSION 3.5)
+  
+  # C++ standard is set to C++14
+  set(CMAKE_CXX_STANDARD 14)
+  
+  # set some compile options
+  # todo : It should be target_compile_options
+  set(CMAKE_CXX_FLAGS -pthread -Wall -D_GLIBCXX_USE_NANOSLEEP -DLINUX)
+  
+  set(CMAKE_VERBOSE_MAKEFILE on)
+  # This variable CMAKE_EXPORT_COMPILE_COMMANDS is
+  # needed to be set to 1. It is configured for outputting
+  # compile_commands.json for clangd
+  set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+  
+  # if you need boost,use tk_cmake_boost 
+
+  PROJECT(${1:prj_name} C CXX )
+  
+  include(GNUInstallDirs)
+
+  add_library(${PROJECT_NAME})
+
+  target_include_directories(
+          ${PROJECT_NAME}
+          PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+  )
+
+  target_sources(
+          ${PROJECT_NAME}
+          PRIVATE 
+          ${CMAKE_CURRENT_SOURCE_DIR}/src/hoge.cpp
+          ${CMAKE_CURRENT_SOURCE_DIR}/src/fuga.cpp
+  )
+
+snippet     tk_cmake_boost
+abbr        tk_cmake_boost
+options     head
+  # If you want to change path to boost, use next line
+  #set (BOOST_ROOT "/path/to/boost/install") 
   # If you need Boost Lib, get rid of #
   #find_package(Boost REQUIRED)
   # If you need Thred Lib, get rid of #
   #find_package(Threads REQUIRED)
-  
-  include_directories(
-          ${CMAKE_CURRENT_SOURCE_DIR}/include
-  )
-  
-  include(GNUInstallDirs)
-  
-  add_subdirectory(apps)
-  add_subdirectory(cmake)
-  add_subdirectory(docs)
-  add_subdirectory(src)
-  
-  
-  file(GLOB MY_APP_SRC
-       "apps/*.cpp"
-       )
-
-  add_executable(${PROJECT_NAME} ${MY_APP_SRC})
-
-
-  file(GLOB MY_LIB_SRC
-       "src/*.cpp"
-       )
-
-  ${3:#}add_library(${2:libname} ${MY_LIB_SRC})
-  $3target_link_libraries(${PROJECT_NAME} $3)

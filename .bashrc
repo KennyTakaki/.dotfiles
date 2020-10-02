@@ -123,4 +123,4 @@ if [ $SHLVL = 1 ]; then
   tmux -2 new -s tk_tmux
 fi
 
-export GTEST_ROOT=/home/frommiddle1/third_party/my_gtest/
+export GTEST_ROOT=/home/frommiddle1/third_party/googletest
