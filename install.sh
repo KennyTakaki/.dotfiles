@@ -42,6 +42,12 @@ done
 # needed for neovimsnippet
 pip3 install pynvim
 
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip ~/.dotfiles/awscliv2.zip
+sudo ~/.dotfiles/aws/install
+sudo rm ~/.dotfiles/awscliv2.zip
+sudo rm -rf ~/.dotfiles/aws
+
 # Plugin install for vim
 vim -c PluginInstall
 
