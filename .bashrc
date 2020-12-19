@@ -123,4 +123,6 @@ if [ $SHLVL = 1 ]; then
   tmux -2 new -s tk_tmux
 fi
 
+complete -C '/usr/local/bin/aws_completer' aws
+
 export GTEST_ROOT=/home/frommiddle1/third_party/googletest

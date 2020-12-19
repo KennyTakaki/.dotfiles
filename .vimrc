@@ -148,3 +148,5 @@ nnoremap <silent><C-u><C-p>  :echo expand("%:p")<CR>
 syntax enable
 colorscheme elflord
 
+
+command Jq %!jq '.'
