@@ -41,6 +41,7 @@ done
 
 # needed for neovimsnippet
 pip3 install pynvim
+pip3 install cfn-lint
 
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip ~/.dotfiles/awscliv2.zip
